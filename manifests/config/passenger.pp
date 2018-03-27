@@ -35,6 +35,8 @@
 #
 # $ssl_protocol::             SSLProtocol configuration to use
 #
+# $ssl_verify_client          SSLVerifyClient directive to use
+#
 # $use_vhost::                Whether to install a vhost. Note that using ssl and
 #                             no vhost is unsupported.
 #
@@ -78,6 +80,7 @@ class foreman::config::passenger(
   Stdlib::Absolutepath $ssl_key = $::foreman::server_ssl_key,
   Optional[Variant[String[0], Stdlib::Absolutepath]] $ssl_crl = $::foreman::server_ssl_crl,
   Optional[String] $ssl_protocol = $::foreman::server_ssl_protocol,
+  String $ssl_verify_client = $::foreman::server_ssl_verify_client,
   Boolean $use_vhost = $::foreman::use_vhost,
   String $user = $::foreman::user,
   Boolean $prestart = $::foreman::passenger_prestart,
@@ -208,7 +211,7 @@ class foreman::config::passenger(
         ssl_crl                 => $ssl_crl_real,
         ssl_crl_check           => $ssl_crl_check,
         ssl_protocol            => $ssl_protocol,
-        ssl_verify_client       => 'optional',
+        ssl_verify_client       => $ssl_verify_client,
         ssl_options             => '+StdEnvVars +ExportCertData',
         ssl_verify_depth        => '3',
         keepalive               => $keepalive_onoff,

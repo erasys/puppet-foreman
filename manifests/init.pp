@@ -158,6 +158,8 @@
 #
 # $server_ssl_protocol::        Defines the Apache mod_ssl SSLProtocol setting in Foreman vhost conf file.
 #
+# $server_ssl_verify_client::   Defines the Apache mod_ssl SSLVerifyClient directive in Foreman vhost conf file.
+#
 # $client_ssl_ca::              Defines the SSL CA used to communicate with Foreman Proxies
 #
 # $client_ssl_cert::            Defines the SSL certificate used to communicate with Foreman Proxies
@@ -264,6 +266,7 @@ class foreman (
   Stdlib::Absolutepath $server_ssl_key = $::foreman::params::server_ssl_key,
   Optional[Variant[String[0], Stdlib::Absolutepath]] $server_ssl_crl = $::foreman::params::server_ssl_crl,
   Optional[String] $server_ssl_protocol = $::foreman::params::server_ssl_protocol,
+  Optional[String] $server_ssl_verify_client = $::foreman::params::server_ssl_verify_client,
   Stdlib::Absolutepath $client_ssl_ca = $::foreman::params::client_ssl_ca,
   Stdlib::Absolutepath $client_ssl_cert = $::foreman::params::client_ssl_cert,
   Stdlib::Absolutepath $client_ssl_key = $::foreman::params::client_ssl_key,
